@@ -14,66 +14,82 @@
         <maven.compiler.target>11</maven.compiler.target>
         <groovy-all.version>3.0.10</groovy-all.version>
         <zxing-core.version>3.5.0</zxing-core.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <zxing-javase.version>3.5.0</zxing-javase.version>
+        <lombok.version>1.18.24</lombok.version>
+        <logback-classic.version>1.2.11</logback-classic.version>
+        <spock-core.version>2.2-groovy-3.0</spock-core.version>
+        <junit.version>4.11</junit.version>
+        <log4j-to-slf4j.version>2.17.2</log4j-to-slf4j.version>
+        <jul-to-slf4j.version>1.7.36</jul-to-slf4j.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.11.0</version>
+            <version>${commons-io.version}</version>
+            <scope>compile</scope>
         </dependency>
-        <!--== GROOVY ==-->
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy-all.version}</version>
-            <type>pom</type>
-        </dependency>
-        <!--== ZXING ==-->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>${zxing-core.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
-            <version>3.5.0</version>
+            <version>${zxing-javase.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>${lombok.version}</version>
+            <scope>compile</scope>
         </dependency>
-        <!--== LOG ==-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
+            <version>${logback-classic.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-to-slf4j</artifactId>
-            <version>2.17.2</version>
+            <version>${log4j-to-slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
-            <version>1.7.36</version>
+            <version>${jul-to-slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!--== TEST ==-->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy-all.version}</version>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>2.2-groovy-3.0</version>
+            <version>${spock-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
