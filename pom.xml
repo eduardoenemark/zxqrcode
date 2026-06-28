@@ -10,19 +10,22 @@
     <url>https://github.com/eduardoenemark/zxqrcode</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <groovy-all.version>3.0.10</groovy-all.version>
-        <zxing-core.version>3.5.0</zxing-core.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <zxing-javase.version>3.5.0</zxing-javase.version>
-        <lombok.version>1.18.24</lombok.version>
-        <logback-classic.version>1.2.11</logback-classic.version>
-        <spock-core.version>2.2-groovy-3.0</spock-core.version>
-        <junit.version>4.11</junit.version>
-        <log4j-to-slf4j.version>2.17.2</log4j-to-slf4j.version>
-        <jul-to-slf4j.version>1.7.36</jul-to-slf4j.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <groovy-all.version>4.0.29</groovy-all.version>
+        <zxing-core.version>3.5.4</zxing-core.version>
+        <commons-io.version>2.22.0</commons-io.version>
+        <zxing-javase.version>3.5.4</zxing-javase.version>
+        <lombok.version>1.18.46</lombok.version>
+        <logback-classic.version>1.5.36</logback-classic.version>
+        <spock-core.version>2.4-groovy-4.0</spock-core.version>
+        <junit.version>4.13.2</junit.version>
+        <junit-bom.version>5.14.4</junit-bom.version>
+        <junit-jupiter.version>${junit-bom.version}</junit-jupiter.version>
+        <junit-vintage.version>${junit-bom.version}</junit-vintage.version>
+        <log4j-to-slf4j.version>2.26.0</log4j-to-slf4j.version>
+        <jul-to-slf4j.version>2.0.18</jul-to-slf4j.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
     </properties>
     <dependencies>
         <dependency>
@@ -68,7 +71,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
+            <groupId>org.apache.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>${groovy-all.version}</version>
             <scope>test</scope>
@@ -87,12 +90,35 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit-vintage.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
@@ -103,6 +129,17 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Spec</include>
+                        <include>**/*Test</include>
+                    </includes>
+                    <systemPropertyVariables>
+                        <spock.version>${spock-core.version}</spock.version>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
@@ -126,7 +163,7 @@
                 <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
                     <artifactId>gmavenplus-plugin</artifactId>
-                    <version>1.13.1</version>
+                    <version>4.2.0</version>
                     <executions>
                         <execution>
                             <goals>
@@ -140,7 +177,14 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
+                    <version>3.5.6</version>
+                    <configuration>
+                        <useFile>false</useFile>
+                        <includes>
+                            <include>**/*Spec</include>
+                            <include>**/*Test</include>
+                        </includes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
